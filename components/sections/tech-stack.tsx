@@ -1,8 +1,6 @@
 "use client";
 
 import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Code2, Database, Globe, Layout, Server } from "lucide-react";
 import { Marquee } from "../magicui/marquee";
 
 const icons = [
