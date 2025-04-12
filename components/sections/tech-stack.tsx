@@ -72,7 +72,7 @@ export function TechStack() {
       </div>
       <Marquee pauseOnHover className="[--duration:100s]" repeat={2}>
         {icons.map((icon, index) => (
-          <Card key={index} className="flex flex-col bg-white items-center justify-center h-24 w-24 shadow-md hover:shadow-lg transition-shadow">
+          <Card key={index} className="flex flex-col bg-slate-900 items-center justify-center h-24 w-24 shadow-md hover:shadow-lg transition-shadow dark:bg-white">
             <div
               className="h-12 w-12 flex items-center justify-center"
             >

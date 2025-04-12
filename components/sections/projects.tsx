@@ -115,7 +115,7 @@ export default function Projects(): ReactElement {
   }, [activeFilter]);
 
   return (
-    <div className="text-white min-h-screen">
+    <div className="text-black min-h-screen dark:text-white">
       <Head>
         <title>Projects | Developer Portfolio</title>
         <meta name="description" content="Showcase of my development projects and work" />
@@ -130,7 +130,7 @@ export default function Projects(): ReactElement {
         >
           <h1 className="text-6xl font-bold mb-6">My Projects</h1>
           <div className="h-1 w-20 bg-purple-500 mx-auto mb-12 rounded-full"></div>
-          <p className="text-gray-300 max-w-2xl mx-auto">
+          <p className="text-black max-w-2xl mx-auto dark:text-white">
             A collection of my work across web development, mobile applications, and UI/UX design.
           </p>
         </motion.div>
@@ -197,7 +197,7 @@ const ProjectCard = ({ project }: ProjectCardProps): ReactElement => {
 
       {/* Project Info */}
       <div className="p-6 relative z-10">
-        <h3 className="text-2xl font-bold mb-2 group-hover:text-purple-400 transition-colors duration-300">
+        <h3 className="text-2xl text-white font-bold mb-2 group-hover:text-purple-400 transition-colors duration-300 ">
           {project.title}
         </h3>
         <p className="text-gray-400 text-sm mb-4 line-clamp-2">
@@ -207,7 +207,7 @@ const ProjectCard = ({ project }: ProjectCardProps): ReactElement => {
           {project.tags.map((tag, index) => (
             <span
               key={index}
-              className="bg-gray-800 text-xs text-gray-300 px-3 py-1 rounded-full"
+              className="bg-gray-800 text-xs text-white px-3 py-1 rounded-full"
             >
               {tag}
             </span>

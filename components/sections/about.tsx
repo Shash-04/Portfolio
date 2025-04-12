@@ -57,7 +57,7 @@ export default function About() {
     ];
 
     return (
-        <div className=" text-white min-h-screen">
+        <div className=" text-black min-h-screen dark:text-white">
             <Head>
                 <title>About Me | Developer Portfolio</title>
                 <meta name="description" content="Learn more about my journey as a full-stack developer" />
@@ -93,7 +93,7 @@ export default function About() {
 
                         <motion.div
                             variants={item}
-                            className="bg-gray-900 rounded-2xl p-8 mb-8"
+                            className="bg-gray-900 text-white rounded-2xl p-8 mb-8"
                         >
                             <h3 className="text-2xl font-semibold mb-4">Tech Stack</h3>
                             <div className="space-y-4">
@@ -151,7 +151,7 @@ export default function About() {
                             variants={item}
                             className="bg-gray-900 rounded-2xl p-8 mb-8"
                         >
-                            <h2 className="text-3xl font-bold mb-6">My Journey</h2>
+                            <h2 className="text-3xl text-white font-bold mb-6">My Journey</h2>
                             <p className="text-gray-300 mb-6">
                                 I'm a passionate full-stack developer and a 2nd year Btech CSE student.I have experience creating seamless digital experiences. My journey in software development started during my computer science studies, where I discovered my fascination with building intuitive user interfaces and robust backend systems.
                             </p>
@@ -189,7 +189,7 @@ export default function About() {
 
                         <motion.div
                             variants={item}
-                            className="bg-gray-900 rounded-2xl p-8 grid grid-cols-1 md:grid-cols-2 gap-6"
+                            className="bg-gray-900 text-white rounded-2xl p-8 grid grid-cols-1 md:grid-cols-2 gap-6"
                         >
                             <div>
                                 <h2 className="text-3xl font-bold mb-6">Education</h2>
