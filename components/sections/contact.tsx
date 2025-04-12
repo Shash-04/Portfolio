@@ -1,6 +1,7 @@
 "use client";
 
 import { useState,  } from 'react';
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Send, Mail, Phone, MapPin, Github, Linkedin, Twitter, Instagram } from 'lucide-react';
 
@@ -41,8 +42,12 @@ export default function Contact() {
       setIsLoading(false);
       setFormStatus('success');
 
-      const mailtoLink = `mailto:shashwatvaish1@gmail.com?subject=Contact from ${name}&body=${message}`;
-      window.open(mailtoLink);
+      useEffect(() => {
+        if (formStatus === 'success') {
+          const mailtoLink = `mailto:shashwatvaish1@gmail.com?subject=Contact from ${name}&body=${message}`;
+          window.open(mailtoLink);
+        }
+      }, [formStatus]);
 
 
       setTimeout(() => {
