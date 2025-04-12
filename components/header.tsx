@@ -12,8 +12,14 @@ export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
 
+  // First useEffect just to set mounted state
   useEffect(() => {
     setMounted(true);
+  }, []);
+
+  // Second useEffect for scroll listener that only runs client-side
+  useEffect(() => {
+    if (!mounted) return;
     
     // Track active section based on scroll position
     const handleScroll = () => {
@@ -31,8 +37,9 @@ export function Header() {
     
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [mounted]);
 
+  // Don't render anything until mounted
   if (!mounted) return null;
 
   const navItems = [
