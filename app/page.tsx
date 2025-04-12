@@ -13,13 +13,16 @@ export default function Home() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const hash = window.location.hash;
-    if (hash) {
-      const el = document.querySelector(hash);
-      if (el) {
-        const yOffset = -80; // adjust this if you have a sticky header
-        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({ top: y, behavior: 'smooth' });
+    // Only run this code in the browser where document exists
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash;
+      if (hash) {
+        const el = document.querySelector(hash);
+        if (el) {
+          const yOffset = -80; // adjust this if you have a sticky header
+          const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
       }
     }
   }, [pathname]);
