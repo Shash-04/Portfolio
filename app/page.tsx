@@ -29,7 +29,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-background">
-      <Header />
+      {/* <Header /> */}
       <div className="container mx-auto px-4 space-y-20">
         <section id="hero">
           <HeroSection />
