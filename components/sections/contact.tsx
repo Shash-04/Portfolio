@@ -1,9 +1,8 @@
 "use client";
 
-import { useState,  } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Send, Mail, Phone, MapPin, Github, Linkedin, Twitter, Instagram } from 'lucide-react';
+import { Send, Mail, MapPin, Github, Linkedin, Instagram } from 'lucide-react';
 
 export default function Contact() {
   const [name, setName] = useState('');
@@ -11,7 +10,6 @@ export default function Contact() {
   const [message, setMessage] = useState('');
   const [formStatus, setFormStatus] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -33,34 +31,31 @@ export default function Contact() {
     }
   };
 
-  const handleSubmit = (e: { preventDefault: () => void; }) => {
-    e.preventDefault();
-    setIsLoading(true);
-
-
-    setTimeout(() => {
-      setIsLoading(false);
-      setFormStatus('success');
-
-      useEffect(() => {
-        if (formStatus === 'success') {
-          const mailtoLink = `mailto:shashwatvaish1@gmail.com?subject=Contact from ${name}&body=${message}`;
-          window.open(mailtoLink);
-        }
-      }, [formStatus]);
-
-
+  // useEffect to trigger the mailto link after the form status is 'success'
+  useEffect(() => {
+    if (formStatus === 'success') {
+      const mailtoLink = `mailto:shashwatvaish1@gmail.com?subject=Contact from ${name}&body=${message}`;
+      window.open(mailtoLink);
       setTimeout(() => {
         setName('');
         setEmail('');
         setMessage('');
         setFormStatus(null);
-      }, 3000);
+      }, 1000); // reset after 3 seconds
+    }
+  }, [formStatus, name, message]);
+
+  const handleSubmit = (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      setFormStatus('success');
     }, 1500);
   };
 
   return (
-    <div className="min-h-screen  text-white py-16 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen text-white py-16 px-4 sm:px-6 lg:px-8">
       <motion.div
         className="max-w-7xl mx-auto"
         initial="hidden"
@@ -178,20 +173,6 @@ export default function Contact() {
                   </div>
                 </motion.div>
 
-                {/* <motion.div
-                  className="flex items-center space-x-4 p-4 bg-gray-800/30 rounded-xl border border-gray-700/50"
-                  whileHover={{ y: -5, boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.1)" }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <div className="bg-purple-500/20 p-3 rounded-lg">
-                    <Phone className="h-6 w-6 text-purple-400" />
-                  </div>
-                  <div>
-                    <p className="text-gray-400 text-sm">Phone</p>
-                    <p className="font-medium">+1 (123) 456-7890</p>
-                  </div>
-                </motion.div> */}
-
                 <motion.div
                   className="flex items-center space-x-4 p-4 bg-gray-800/30 rounded-xl border border-gray-700/50"
                   whileHover={{ y: -5, boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.1)" }}
@@ -235,25 +216,12 @@ export default function Contact() {
                   href="https://www.instagram.com/shash.ded/?hl=enusername"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-gray-800 hover:bg-gray-700 p-4 rounded-lg transition-all duration-300"
-                  whileHover={{ y: -5, scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                >
+                  className="bg-gray-800 hover:bg-gray-700 p-4 rounded-lg transition-all duration-300" whileHover={{ y: -5, scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }} >
                   <Instagram className="h-6 w-6 text-white" />
                 </motion.a>
               </div>
             </div>
-
-            <motion.div
-              className="mt-8 p-6 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-xl border border-blue-500/20"
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.2 }}
-            >
-              <h3 className="text-xl font-bold mb-2">Quick Response</h3>
-              <p className="text-gray-300">
-                I typically respond to all inquiries within 24 hours. Looking forward to connecting with you!
-              </p>
-            </motion.div>
           </motion.div>
         </div>
       </motion.div>

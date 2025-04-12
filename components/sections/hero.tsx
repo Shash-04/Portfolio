@@ -15,7 +15,7 @@ import devAnimation from "@/public/Developer.json";
 
 export function HeroSection() {
   return (
-    <section className="min-h-[calc(100vh-4rem)] flex items-center justify-center">
+    <section className="min-h-[calc(100vh-4rem)] flex items-center justify-center mt-5">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
