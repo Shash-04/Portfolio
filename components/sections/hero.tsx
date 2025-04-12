@@ -1,22 +1,19 @@
 "use client";
 
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 import { Button } from '@/components/ui/button';
 import { Github, Linkedin, Twitter, Instagram } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import Lottie from "lottie-react";
+import dynamic from 'next/dynamic';
+
+// Dynamically import Lottie with SSR disabled
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
+
 import devAnimation from "@/public/Developer.json";
 
 export function HeroSection() {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true); // Ensure that we only render this on the client-side
-  }, []);
-
   return (
     <section className="min-h-[calc(100vh-4rem)] flex items-center justify-center">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -97,17 +94,15 @@ export function HeroSection() {
           </div>
         </motion.div>
 
-        {/* Only render Lottie on the client-side */}
-        {isClient && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 0.79 }}
-            transition={{ duration: 0.5 }}
-            className="relative aspect-square"
-          >
-            <Lottie animationData={devAnimation} loop={true} className="h-full w-full" />
-          </motion.div>
-        )}
+        {/* Dynamically import Lottie animation only on the client side */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 0.79 }}
+          transition={{ duration: 0.5 }}
+          className="relative aspect-square"
+        >
+          <Lottie animationData={devAnimation} loop={true} className="h-full w-full" />
+        </motion.div>
       </div>
     </section>
   );
