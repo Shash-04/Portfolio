@@ -1,6 +1,8 @@
-"use client"
+'use client';
+
 import { cn } from "@/lib/utils";
 import { ComponentPropsWithoutRef } from "react";
+import { useEffect, useState } from 'react';
 
 interface MarqueeProps extends ComponentPropsWithoutRef<"div"> {
   /**
@@ -42,6 +44,16 @@ export function Marquee({
   repeat = 4,
   ...props
 }: MarqueeProps) {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true); // Set to true when the component is mounted on the client side
+  }, []);
+
+  if (!isClient) {
+    return null; // Render nothing until client-side rendering
+  }
+
   return (
     <div
       {...props}
