@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: 'Professional Developer Portfolio',
   description: 'A showcase of my work and skills as a software developer',
   keywords: ['developer', 'portfolio', 'software engineer', 'web development'],
-  authors: [{ name: 'Your Name' }],
+  authors: [{ name: 'Shashwat' }],
   openGraph: {
     type: 'website',
     locale: 'en_US',
