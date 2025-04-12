@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 import { Button } from '@/components/ui/button';
@@ -9,10 +10,14 @@ import Link from 'next/link';
 import Lottie from "lottie-react";
 import devAnimation from "@/public/Developer.json";
 
-
 export function HeroSection() {
-  return (
+  const [isClient, setIsClient] = useState(false);
 
+  useEffect(() => {
+    setIsClient(true); // Ensure that we only render this on the client-side
+  }, []);
+
+  return (
     <section className="min-h-[calc(100vh-4rem)] flex items-center justify-center">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <motion.div
@@ -70,7 +75,7 @@ export function HeroSection() {
               <Github className="h-6 w-6 text-white" />
             </motion.a>
             <motion.a
-              href="https://www.linkedin.com/in/shashwat-vaish-6256442b4/rname"
+              href="https://www.linkedin.com/in/shashwat-vaish-6256442b4/"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-gray-800 hover:bg-gray-700 p-4 rounded-lg transition-all duration-300"
@@ -91,14 +96,18 @@ export function HeroSection() {
             </motion.a>
           </div>
         </motion.div>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 0.79 }}
-          transition={{ duration: 0.5 }}
-          className="relative aspect-square"
-        >
-          <Lottie animationData={devAnimation} loop={true} className="h-full w-full" />
-        </motion.div>
+
+        {/* Only render Lottie on the client-side */}
+        {isClient && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 0.79 }}
+            transition={{ duration: 0.5 }}
+            className="relative aspect-square"
+          >
+            <Lottie animationData={devAnimation} loop={true} className="h-full w-full" />
+          </motion.div>
+        )}
       </div>
     </section>
   );

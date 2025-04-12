@@ -32,7 +32,7 @@ export default function Home() {
       <Header />
       <div className="container mx-auto px-4 space-y-20">
         <section id="hero">
-          {/* <HeroSection /> */}
+          <HeroSection />
         </section>
         <TechStack />
         <section id="projects">
