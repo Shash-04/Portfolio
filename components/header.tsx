@@ -89,7 +89,6 @@ export function Header() {
             <span>Get in Touch</span>
             <ExternalLink className="h-4 w-4" />
           </Button>
-
           <Button
             variant="ghost"
             size="icon"

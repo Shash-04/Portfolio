@@ -28,46 +28,56 @@ export default function Projects(): ReactElement {
   const projects: Project[] = [
     {
       id: 1,
+      title: "PixelSaaS",
+      description: "A Media Optimization Kit using Cloudinary Ai ",
+      image: "/Pixel-2.png",
+      tags: ["Nextjs", "Neon DB", "Cloduinary Ai"],
+      category: "web",
+      url: "https://pixel-saas.vercel.app/",
+      github: "https://github.com/Shash-04/PixelSaas"
+    },
+    {
+      id: 2,
       title: "Riverflow",
       description: "A real-time question answer community platform for asking and solving questions.",
       image: "/riverflow.png",
-      tags: ["React", "Node.js", "D3.js"],
+      tags: ["Nextjs", "Appwrite", "Next Auth"],
       category: "web",
       url: "https://qna-sandy.vercel.app",
       github: "https://github.com/Shash-04/qna"
     },
     {
-      id: 2,
+      id: 3,
       title: "EchoSecrets",
       description: "End-to-end encrypted secret messaging application with anonymous message sending feature.",
       image: "/echosecrets.png",
-      tags: ["React Native", "Firebase", "Encryption"],
+      tags: ["Nextjs", "MongoDB", "Encryption"],
       category: "mobile",
       url: "https://echo-secrets.netlify.app",
       github: "https://github.com/Shash-04/ama"
     },
     {
-      id: 3,
+      id: 4,
       title: "Tracktide",
       description: "Music discovery platform with various courses and .",
       image: "/rapsheet.png",
-      tags: ["Vue.js", "Python", "Machine Learning"],
+      tags: ["Nextjs", "SpotifyAPI", "Next Auth"],
       category: "web",
       url: "https://tracktide.vercel.app",
       github: "https://github.com/Shash-04/Rapsheet"
     },
     {
-      id: 4,
+      id: 5,
       title: "Shash-Blogs",
       description: "A minimalist blogging platform focused on typography and reading experience.",
       image: "/shashblog.jpeg",
-      tags: ["Next.js", "MongoDB", "Tailwind CSS"],
+      tags: ["React", "Appwrite", "Tailwind CSS"],
       category: "web",
       url: "https://shashblog.vercel.app",
       github: "https://github.com/Shash-04/shashblog"
     },
     {
-      id: 5,
+      id: 6,
       title: "Medtrack",
       description: "Healthcare application for tracking medications and appointments with reminder system.",
       image: "/Medtrack.png",
@@ -76,16 +86,6 @@ export default function Projects(): ReactElement {
       url: "https://medtrack-hans-innvoverse.vercel.app",
       github: "https://github.com/Shash-04/Medtrack-HansInnvoverse"
     },
-    {
-      id: 6,
-      title: "Lifestats",
-      description: "Personal analytics dashboard for health, productivity, and habit tracking.",
-      image: "/lifestats.png",
-      tags: ["React", "Chart.js", "Firebase"],
-      category: "web",
-      url: "https://life-stats-og-shashs-projects.vercel.app",
-      github: "https://github.com/Shash-04/Life-Stats"
-    }
   ];
 
   const categories = [
