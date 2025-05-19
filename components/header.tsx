@@ -149,7 +149,7 @@ export function Header() {
                   className="w-full mt-2 flex items-center justify-center gap-2"
                   onClick={() => {
                     if (typeof window !== "undefined") {
-                      window.open("mailto:contact@shashwat.com", "_blank");
+                      window.open("mailto:shashwatvaish1@gmail.com", "_blank");
                     }
                     setIsOpen(false);
                   }}
