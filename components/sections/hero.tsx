@@ -49,7 +49,7 @@ export function HeroSection() {
             Full-stack developer crafting seamless digital experiences. Currently focused on building accessible, user-centric products with performance and design in mind.
           </p>
           <div className="flex gap-4">
-            <Link href="Shash-DEC-CV.pdf" target='_blank'>
+            <Link href="Shash-JAN-CV.pdf" target='_blank'>
               <Button size="lg">
                 Download CV
               </Button>
