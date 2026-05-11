@@ -1,22 +1,37 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Outfit, Fira_Code } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 
-const inter = Inter({ subsets: ['latin'] });
+const outfit = Outfit({
+  subsets: ['latin'],
+  variable: '--font-outfit',
+  display: 'swap',
+});
+
+const firaCode = Fira_Code({
+  subsets: ['latin'],
+  variable: '--font-fira',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
-  title: 'Professional Developer Portfolio',
-  description: 'A showcase of my work and skills as a software developer',
-  keywords: ['developer', 'portfolio', 'software engineer', 'web development'],
-  authors: [{ name: 'Shashwat' }],
+  title: 'Shashwat Vaish — Full-Stack Developer',
+  description: 'Portfolio of Shashwat Vaish, a full-stack developer and BTech CSE student building modern web applications with Next.js, TypeScript, and AI.',
+  keywords: ['Shashwat Vaish', 'developer', 'portfolio', 'software engineer', 'full-stack', 'Next.js', 'TypeScript', 'Delhi'],
+  authors: [{ name: 'Shashwat Vaish' }],
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://your-domain.com',
-    title: 'Professional Developer Portfolio',
-    description: 'A showcase of my work and skills as a software developer',
-    siteName: 'Developer Portfolio',
+    url: 'https://shash-portfolio.vercel.app',
+    title: 'Shashwat Vaish — Full-Stack Developer',
+    description: 'Portfolio of Shashwat Vaish, a full-stack developer building modern web applications.',
+    siteName: 'Shashwat Vaish Portfolio',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Shashwat Vaish — Full-Stack Developer',
+    description: 'Portfolio of Shashwat Vaish, a full-stack developer building modern web applications.',
   },
 };
 
@@ -27,11 +42,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={`${outfit.variable} ${firaCode.variable} font-[var(--font-outfit)]`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="dark"
+          enableSystem={false}
           disableTransitionOnChange
         >
           {children}

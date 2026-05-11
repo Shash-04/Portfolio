@@ -1,8 +1,9 @@
-"use client"
-import { useState, useEffect } from 'react';
-import Head from 'next/head';
+"use client";
+
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { ExternalLink, Github, Sparkles, Filter } from 'lucide-react';
 import type { ReactElement } from 'react';
 
 type Project = {
@@ -14,233 +15,277 @@ type Project = {
   category: string;
   url: string;
   github: string;
+  featured?: boolean;
 };
 
-type ProjectCardProps = {
-  project: Project;
+const projects: Project[] = [
+  {
+    id: 1,
+    title: "AI Feedback Management System",
+    description: "Full-stack feedback analytics platform enabling dynamic form creation, real-time submissions, and AI-powered insight extraction using Langchain.",
+    image: "/feedback1.png",
+    tags: ["Next.js", "Neon DB", "Langchain"],
+    category: "web",
+    url: "https://feedback-analysis-ai.vercel.app",
+    github: "https://github.com/Shash-04/feedback",
+    featured: true,
+  },
+  {
+    id: 2,
+    title: "VibeCode Editor",
+    description: "AI-powered browser-based code editor with real-time execution, terminal integration, and intelligent code assistance using WebContainers.",
+    image: "/vibecode.png",
+    tags: ["Monaco Editor", "WebContainers", "Xterm.js"],
+    category: "web",
+    url: "https://ai-vibe-code-editor-two.vercel.app",
+    github: "https://github.com/Shash-04/AI-vibe-code-editor",
+    featured: true,
+  },
+  {
+    id: 3,
+    title: "Quick Compare",
+    description: "Quick-commerce price comparison tool that aggregates grocery prices across platforms using web scraping to help users find the best deals instantly.",
+    image: "/quick.jpg",
+    tags: ["Playwright", "RapidFuzz", "FastAPI"],
+    category: "fullstack",
+    url: "https://quick-compare-sigma.vercel.app",
+    github: "https://github.com/Shash-04/QuickCompare",
+    featured: true,
+  },
+  {
+    id: 4,
+    title: "PixelSaaS",
+    description: "A Media Optimization Kit powered by Cloudinary AI — smart image transformations, compression, and delivery at scale.",
+    image: "/Pixel-2.png",
+    tags: ["Next.js", "Neon DB", "Cloudinary AI"],
+    category: "web",
+    url: "https://pixel-saas.vercel.app/",
+    github: "https://github.com/Shash-04/PixelSaas",
+  },
+  {
+    id: 5,
+    title: "Riverflow",
+    description: "A real-time Q&A community platform for developers to ask and solve questions, with authentication and rich text support.",
+    image: "/riverflow.png",
+    tags: ["Next.js", "Appwrite", "Next Auth"],
+    category: "web",
+    url: "https://qna-sandy.vercel.app",
+    github: "https://github.com/Shash-04/qna",
+  },
+  {
+    id: 6,
+    title: "EchoSecrets",
+    description: "End-to-end encrypted secret messaging app with anonymous message sending and a clean privacy-first experience.",
+    image: "/echosecrets.png",
+    tags: ["Next.js", "MongoDB", "Encryption"],
+    category: "fullstack",
+    url: "https://echo-secrets.netlify.app",
+    github: "https://github.com/Shash-04/ama",
+  },
+  {
+    id: 7,
+    title: "Tracktide",
+    description: "Music discovery platform powered by the Spotify API with personalized recommendations and playlist management.",
+    image: "/rapsheet.png",
+    tags: ["Next.js", "Spotify API", "Next Auth"],
+    category: "web",
+    url: "https://tracktide.vercel.app",
+    github: "https://github.com/Shash-04/Rapsheet",
+  },
+  {
+    id: 8,
+    title: "Shash-Blogs",
+    description: "A minimalist blogging platform focused on clean typography, great reading experience, and fast performance.",
+    image: "/shashblog.jpeg",
+    tags: ["React", "Appwrite", "Tailwind CSS"],
+    category: "web",
+    url: "https://shashblog.vercel.app",
+    github: "https://github.com/Shash-04/shashblog",
+  },
+  {
+    id: 9,
+    title: "Medtrack",
+    description: "Healthcare application for tracking medications and appointments with a smart reminder system and a clean dashboard.",
+    image: "/Medtrack.png",
+    tags: ["React", "Express", "MongoDB"],
+    category: "fullstack",
+    url: "https://medtrack-hans-innvoverse.vercel.app",
+    github: "https://github.com/Shash-04/Medtrack-HansInnvoverse",
+  },
+];
+
+const categories = [
+  { key: 'all', label: 'All Projects' },
+  { key: 'web', label: 'Web Apps' },
+  { key: 'fullstack', label: 'Full-Stack' },
+];
+
+const tagColors: Record<string, string> = {
+  "Next.js": "bg-white/10 text-white/70",
+  "React": "bg-blue-500/15 text-blue-300",
+  "MongoDB": "bg-emerald-500/15 text-emerald-300",
+  "TypeScript": "bg-blue-400/15 text-blue-300",
 };
 
-export default function Projects(): ReactElement {
+export default function ProjectsShowcase(): ReactElement {
   const [activeFilter, setActiveFilter] = useState<string>('all');
-  const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
-  const [isLoaded, setIsLoaded] = useState<boolean>(false);
-
-  const projects: Project[] = [
-    {
-      id: 1,
-      title: "PixelSaaS",
-      description: "A Media Optimization Kit using Cloudinary Ai ",
-      image: "/Pixel-2.png",
-      tags: ["Nextjs", "Neon DB", "Cloduinary Ai"],
-      category: "web",
-      url: "https://pixel-saas.vercel.app/",
-      github: "https://github.com/Shash-04/PixelSaas"
-    },
-    {
-      id: 2,
-      title: "Riverflow",
-      description: "A real-time question answer community platform for asking and solving questions.",
-      image: "/riverflow.png",
-      tags: ["Nextjs", "Appwrite", "Next Auth"],
-      category: "web",
-      url: "https://qna-sandy.vercel.app",
-      github: "https://github.com/Shash-04/qna"
-    },
-    {
-      id: 3,
-      title: "EchoSecrets",
-      description: "End-to-end encrypted secret messaging application with anonymous message sending feature.",
-      image: "/echosecrets.png",
-      tags: ["Nextjs", "MongoDB", "Encryption"],
-      category: "mobile",
-      url: "https://echo-secrets.netlify.app",
-      github: "https://github.com/Shash-04/ama"
-    },
-    {
-      id: 4,
-      title: "Tracktide",
-      description: "Music discovery platform with various courses and .",
-      image: "/rapsheet.png",
-      tags: ["Nextjs", "SpotifyAPI", "Next Auth"],
-      category: "web",
-      url: "https://tracktide.vercel.app",
-      github: "https://github.com/Shash-04/Rapsheet"
-    },
-    {
-      id: 5,
-      title: "Shash-Blogs",
-      description: "A minimalist blogging platform focused on typography and reading experience.",
-      image: "/shashblog.jpeg",
-      tags: ["React", "Appwrite", "Tailwind CSS"],
-      category: "web",
-      url: "https://shashblog.vercel.app",
-      github: "https://github.com/Shash-04/shashblog"
-    },
-    {
-      id: 6,
-      title: "Medtrack",
-      description: "Healthcare application for tracking medications and appointments with reminder system.",
-      image: "/Medtrack.png",
-      tags: ["React", "Express", "MongoDB"],
-      category: "web",
-      url: "https://medtrack-hans-innvoverse.vercel.app",
-      github: "https://github.com/Shash-04/Medtrack-HansInnvoverse"
-    },
-  ];
-
-  const categories = [
-    { key: 'all', label: 'All Projects' },
-    { key: 'web', label: 'Web Apps' },
-    { key: 'mobile', label: 'Mobile Apps' }
-  ];
-
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3,
-      },
-    },
-  };
+  const [filteredProjects, setFilteredProjects] = useState<Project[]>(projects);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   useEffect(() => {
     const filtered = activeFilter === 'all'
       ? projects
-      : projects.filter(project => project.category === activeFilter);
-
+      : projects.filter(p => p.category === activeFilter);
     setFilteredProjects(filtered);
-    setTimeout(() => setIsLoaded(true), 300);
   }, [activeFilter]);
 
   return (
-    <div className="text-black min-h-screen dark:text-white">
-      <Head>
-        <title>Projects | Developer Portfolio</title>
-        <meta name="description" content="Showcase of my development projects and work" />
-      </Head>
+    <section ref={ref} className="py-8">
+      {/* Header */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6 }}
+        className="text-center mb-12"
+      >
+        {/* <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-violet-500/10 text-violet-300 border border-violet-500/20 mb-4">
+          <Sparkles className="h-3 w-3" />
+          What I've built
+        </span> */}
+        <h2 className="text-4xl lg:text-5xl font-bold gradient-text mb-4">My Projects</h2>
+        <p className="text-foreground/50 max-w-xl mx-auto text-sm leading-relaxed">
+          A collection of real-world projects — from AI tools to developer platforms, each solving a genuine problem.
+        </p>
+        <div className="h-px w-24 mx-auto mt-4 bg-gradient-to-r from-transparent via-violet-500 to-transparent" />
+      </motion.div>
 
-      <main className="container mx-auto px-4 py-20 max-w-6xl">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-16 text-center"
-        >
-          <h1 className="text-6xl font-bold mb-6">My Projects</h1>
-          <div className="h-1 w-20 bg-purple-500 mx-auto mb-12 rounded-full"></div>
-          <p className="text-black max-w-2xl mx-auto dark:text-white">
-            A collection of my work across web development, mobile applications, and UI/UX design.
-          </p>
-        </motion.div>
+      {/* Filter Pills */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.5, delay: 0.15 }}
+        className="flex flex-wrap justify-center gap-2 mb-10"
+      >
+        {categories.map(({ key, label }) => (
+          <button
+            key={key}
+            onClick={() => setActiveFilter(key)}
+            className={`flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
+              activeFilter === key
+                ? 'bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-lg shadow-violet-900/30'
+                : 'glass border border-white/10 text-foreground/50 hover:text-foreground hover:border-violet-500/30'
+            }`}
+          >
+            {key === 'all' && <Filter className="h-3.5 w-3.5" />}
+            {label}
+          </button>
+        ))}
+      </motion.div>
 
-        {/* Filter Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-          className="flex flex-wrap justify-center gap-4 mb-16"
-        >
-          {categories.map((category) => (
-            <button
-              key={category.key}
-              onClick={() => setActiveFilter(category.key)}
-              className={`px-6 py-2 rounded-full text-sm transition-all duration-300 ${activeFilter === category.key
-                ? 'bg-purple-600 text-white'
-                : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
-                }`}
-            >
-              {category.label}
-            </button>
+      {/* Projects Grid */}
+      <motion.div
+        layout
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+      >
+        <AnimatePresence mode="popLayout">
+          {filteredProjects.map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index} />
           ))}
-        </motion.div>
-
-        {/* Projects Grid */}
-        <motion.div
-          variants={container}
-          initial="hidden"
-          animate={isLoaded ? "show" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {filteredProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
-        </motion.div>
-      </main>
-    </div>
+        </AnimatePresence>
+      </motion.div>
+    </section>
   );
 }
 
-const ProjectCard = ({ project }: ProjectCardProps): ReactElement => {
-  const [isHovered, setIsHovered] = useState<boolean>(false);
+function ProjectCard({ project, index }: { project: Project; index: number }): ReactElement {
+  const [hovered, setHovered] = useState(false);
 
   return (
     <motion.div
-      variants={{
-        hidden: { y: 20, opacity: 0 },
-        show: { y: 0, opacity: 1 }
-      }}
-      className="relative overflow-hidden rounded-2xl bg-gray-900 group h-[400px]"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      layout
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.4, delay: index * 0.06 }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="group relative rounded-2xl overflow-hidden glass-dark border border-white/8 hover:border-violet-500/25 transition-all duration-400 hover:glow-violet-sm flex flex-col"
     >
-      {/* Project Image */}
-      <div className="relative h-[200px] overflow-hidden">
+      {/* Featured Badge */}
+      {project.featured && (
+        <div className="absolute top-3 left-3 z-20 flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-lg">
+          <Sparkles className="h-2.5 w-2.5" />
+          Featured
+        </div>
+      )}
+
+      {/* Image */}
+      <div className="relative h-48 overflow-hidden flex-shrink-0">
         <img
           src={project.image}
           alt={project.title}
           className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-70"></div>
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0f0f23] via-[#0f0f23]/40 to-transparent" />
+
+        {/* Hover action overlay */}
+        <motion.div
+          initial={false}
+          animate={{ opacity: hovered ? 1 : 0 }}
+          transition={{ duration: 0.25 }}
+          className="absolute inset-0 flex items-center justify-center gap-3 bg-black/60 backdrop-blur-sm"
+        >
+          <Link href={project.url} target="_blank" rel="noopener noreferrer">
+            <motion.span
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-lg cursor-pointer"
+            >
+              <ExternalLink className="h-3.5 w-3.5" />
+              Live Demo
+            </motion.span>
+          </Link>
+          <Link href={project.github} target="_blank" rel="noopener noreferrer">
+            <motion.span
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold glass border border-white/20 text-white cursor-pointer"
+            >
+              <Github className="h-3.5 w-3.5" />
+              Code
+            </motion.span>
+          </Link>
+        </motion.div>
       </div>
 
-      {/* Project Info */}
-      <div className="p-6 relative z-10">
-        <h3 className="text-2xl text-white font-bold mb-2 group-hover:text-purple-400 transition-colors duration-300 ">
+      {/* Card Content */}
+      <div className="p-5 flex flex-col flex-1">
+        {/* Gradient top accent line */}
+        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-violet-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+        <h3 className="text-base font-bold text-foreground/90 group-hover:text-violet-300 transition-colors duration-300 mb-2 leading-snug">
           {project.title}
         </h3>
-        <p className="text-gray-400 text-sm mb-4 line-clamp-2">
+        <p className="text-foreground/50 text-xs leading-relaxed mb-4 line-clamp-2 flex-1">
           {project.description}
         </p>
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.tags.map((tag, index) => (
+
+        {/* Tags */}
+        <div className="flex flex-wrap gap-1.5 mt-auto">
+          {project.tags.map((tag) => (
             <span
-              key={index}
-              className="bg-gray-800 text-xs text-white px-3 py-1 rounded-full"
+              key={tag}
+              className={`px-2.5 py-1 rounded-lg text-[10px] font-medium border border-white/10 ${
+                tagColors[tag] ?? "bg-white/5 text-foreground/50"
+              }`}
             >
               {tag}
             </span>
           ))}
         </div>
       </div>
-
-      {/* Hover Links */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isHovered ? 1 : 0 }}
-        transition={{ duration: 0.3 }}
-        className="absolute inset-0 bg-black/80 flex items-center justify-center space-x-4 z-20"
-      >
-        <Link href={project.url} target="_blank">
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-5 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-full"
-          >
-            Live Demo
-          </motion.button>
-        </Link>
-        <Link href={project.github} target="_blank">
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-5 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-full"
-          >
-            GitHub
-          </motion.button>
-        </Link>
-      </motion.div>
     </motion.div>
   );
-};
+}

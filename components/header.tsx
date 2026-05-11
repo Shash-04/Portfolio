@@ -1,166 +1,113 @@
 "use client";
 
-import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
+import { useState, useEffect, useRef } from 'react';
 import { useTheme } from 'next-themes';
-import { Moon, Sun, Menu, X, ExternalLink } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { Moon, Sun, Menu, X } from 'lucide-react';
+import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 
 export function Header() {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const [scrolled, setScrolled] = useState(false);
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
 
-  // First useEffect just to set mounted state
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Second useEffect for scroll listener that only runs client-side
   useEffect(() => {
     if (!mounted) return;
+
     const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
       const sections = ["projects", "about", "contact"];
-      const currentSection = sections.find(section => {
-        if (typeof window !== "undefined") {
-          const element = document.getElementById(section);
-          if (!element) return false;
-
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
-        }
+      const current = sections.find(section => {
+        const el = document.getElementById(section);
+        if (!el) return false;
+        const rect = el.getBoundingClientRect();
+        return rect.top <= 120 && rect.bottom >= 120;
       });
-
-      setActiveSection(currentSection || "");
+      setActiveSection(current || "");
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [mounted]);
 
-  // Don't render anything until mounted
   if (!mounted) return null;
 
   const navItems = [
     { name: "Projects", href: "#projects" },
     { name: "About", href: "#about" },
-    { name: "Contact", href: "#contact" }
+    { name: "Contact", href: "#contact" },
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-all duration-200">
-      <div className="container flex h-16 items-center justify-between">
-        <div className="flex items-center">
-          <a className="flex pl-4 items-center space-x-2 mr-8" href="/">
-            <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold">S</div>
-            <span className="font-bold text-lg">
-              Shashwat's Portfolio
-            </span>
-          </a>
+    <>
+      {/* Scroll Progress Bar */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 z-[60] h-[2px] origin-left"
+        style={{
+          scaleX,
+          background: "linear-gradient(90deg, #7c3aed, #a855f7, #6366f1)",
+        }}
+      />
 
-          <nav className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                className={`relative py-2 text-sm font-medium transition-colors hover:text-primary ${activeSection === item.name.toLowerCase() ? "text-primary" : "text-foreground/80"
-                  }`}
-                href={item.href}
-              >
-                {item.name}
-                {activeSection === item.name.toLowerCase() && (
-                  <motion.div
-                    layoutId="activeSection"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
-                  />
-                )}
-              </a>
-            ))}
-          </nav>
-        </div>
+      <header
+        className={`sticky top-0 z-50 w-full transition-all duration-500 ${
+          scrolled
+            ? "glass-dark shadow-lg shadow-black/20"
+            : "bg-transparent"
+        }`}
+      >
+      
 
-        <div className="flex items-center space-x-2">
-          <Button
-            variant="outline"
-            size="sm"
-            className="hidden md:flex items-center gap-2 border-primary text-primary hover:bg-primary/10"
-            onClick={() => window.open("mailto:shashwat1@gmail.com", "_blank")}
-          >
-            <span>Get in Touch</span>
-            <ExternalLink className="h-4 w-4" />
-          </Button>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="rounded-full"
-            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-            aria-label="Toggle theme"
-          >
-            <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-            <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          </Button>
-
-          <Button
-            variant="ghost"
-            size="icon"
-            className="rounded-full md:hidden"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </Button>
-        </div>
-      </div>
-
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="overflow-hidden md:hidden"
-          >
-            <div className="px-4 py-4 space-y-4 bg-background/95 backdrop-blur">
-              {navItems.map((item) => (
+        {/* Mobile Dropdown */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.25, ease: "easeInOut" }}
+              className="md:hidden overflow-hidden glass-dark border-t border-white/5"
+            >
+              <div className="px-4 py-4 space-y-1">
+                {navItems.map((item, i) => (
+                  <motion.a
+                    key={item.name}
+                    href={item.href}
+                    initial={{ x: -20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: i * 0.07 }}
+                    onClick={() => setIsOpen(false)}
+                    className={`flex items-center px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
+                      activeSection === item.name.toLowerCase()
+                        ? "bg-violet-500/10 text-violet-400 border border-violet-500/20"
+                        : "text-foreground/70 hover:text-foreground hover:bg-white/5"
+                    }`}
+                  >
+                    {item.name}
+                  </motion.a>
+                ))}
                 <motion.a
-                  key={item.name}
+                  href="#contact"
                   initial={{ x: -20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: navItems.indexOf(item) * 0.1 }}
-                  className={`block py-2 px-2 text-lg rounded-md ${activeSection === item.name.toLowerCase()
-                      ? "bg-primary/10 text-primary font-medium"
-                      : "hover:bg-accent text-foreground/80"
-                    }`}
-                  href={item.href}
+                  transition={{ delay: navItems.length * 0.07 }}
                   onClick={() => setIsOpen(false)}
+                  className="flex items-center justify-center gap-2 w-full px-4 py-3 mt-2 rounded-xl text-sm font-medium bg-gradient-to-r from-violet-600 to-indigo-600 text-white"
                 >
-                  {item.name}
+                  Hire Me
                 </motion.a>
-              ))}
-              <motion.div
-                initial={{ x: -20, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ delay: navItems.length * 0.1 }}
-              >
-                <Button
-                  variant="default"
-                  className="w-full mt-2 flex items-center justify-center gap-2"
-                  onClick={() => {
-                    if (typeof window !== "undefined") {
-                      window.open("mailto:shashwatvaish1@gmail.com", "_blank");
-                    }
-                    setIsOpen(false);
-                  }}
-                >
-                  <span>Get in Touch</span>
-                  <ExternalLink className="h-4 w-4" />
-                </Button>
-              </motion.div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </header>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </header>
+    </>
   );
 }

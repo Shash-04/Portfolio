@@ -60,45 +60,56 @@ const config: Config = {
 					'5': 'hsl(var(--chart-5))'
 				}
 			},
+			fontFamily: {
+				sans: ['var(--font-outfit)', 'system-ui', 'sans-serif'],
+				mono: ['var(--font-fira)', 'monospace'],
+				outfit: ['var(--font-outfit)', 'sans-serif'],
+			},
 			keyframes: {
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' }
 				},
 				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' }
 				},
 				marquee: {
-					from: {
-						transform: 'translateX(0)'
-					},
-					to: {
-						transform: 'translateX(calc(-100% - var(--gap)))'
-					}
+					from: { transform: 'translateX(0)' },
+					to: { transform: 'translateX(calc(-100% - var(--gap)))' }
 				},
 				'marquee-vertical': {
-					from: {
-						transform: 'translateY(0)'
-					},
-					to: {
-						transform: 'translateY(calc(-100% - var(--gap)))'
-					}
-				}
+					from: { transform: 'translateY(0)' },
+					to: { transform: 'translateY(calc(-100% - var(--gap)))' }
+				},
+				float: {
+					'0%, 100%': { transform: 'translateY(0px)' },
+					'50%': { transform: 'translateY(-10px)' },
+				},
+				'pulse-glow': {
+					'0%, 100%': { boxShadow: '0 0 20px rgba(124, 58, 237, 0.3)' },
+					'50%': { boxShadow: '0 0 40px rgba(124, 58, 237, 0.6), 0 0 80px rgba(124, 58, 237, 0.2)' },
+				},
+				'gradient-shift': {
+					'0%': { backgroundPosition: '0% 50%' },
+					'50%': { backgroundPosition: '100% 50%' },
+					'100%': { backgroundPosition: '0% 50%' },
+				},
+				shimmer: {
+					'0%': { backgroundPosition: '200% center' },
+					'100%': { backgroundPosition: '-200% center' },
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				marquee: 'marquee var(--duration) infinite linear',
-				'marquee-vertical': 'marquee-vertical var(--duration) linear infinite'
+				'marquee-vertical': 'marquee-vertical var(--duration) linear infinite',
+				float: 'float 4s ease-in-out infinite',
+				'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+				'spin-slow': 'spin 8s linear infinite',
+				gradient: 'gradient-shift 4s ease infinite',
+				shimmer: 'shimmer 2s infinite',
 			}
 		}
 	},
