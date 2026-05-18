@@ -33,7 +33,7 @@ const skills = [
 ];
 
 const categoryColors: Record<string, string> = {
-  Frontend: "bg-violet-500/15 text-violet-300 border-violet-500/25",
+  Frontend: "bg-cyan-500/15 text-cyan-300 border-cyan-500/25",
   Backend: "bg-blue-500/15 text-blue-300 border-blue-500/25",
   Database: "bg-emerald-500/15 text-emerald-300 border-emerald-500/25",
   Tools: "bg-amber-500/15 text-amber-300 border-amber-500/25",
@@ -80,7 +80,7 @@ export default function About() {
         className="text-center mb-16"
       >
         <h2 className="text-4xl lg:text-5xl font-bold gradient-text mb-4">About Me</h2>
-        <div className="h-px w-24 mx-auto bg-gradient-to-r from-transparent via-violet-500 to-transparent" />
+        <div className="h-px w-24 mx-auto bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
       </motion.div>
 
       <motion.div
@@ -93,7 +93,7 @@ export default function About() {
         <motion.div variants={item} className="lg:col-span-2 space-y-6">
           {/* Profile Photo */}
           <div className="relative group">
-            <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-violet-500 to-indigo-600 opacity-40 blur-md group-hover:opacity-60 transition-opacity duration-300" />
+            <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-cyan-500 to-sky-600 opacity-40 blur-md group-hover:opacity-60 transition-opacity duration-300" />
             <div className="relative rounded-2xl overflow-hidden aspect-[4/3]">
               <img
                 src="2.jpeg"
@@ -103,7 +103,7 @@ export default function About() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               <div className="absolute bottom-4 left-4 right-4">
                 <div className="flex items-center gap-2 text-sm text-white/80">
-                  <MapPin className="h-3.5 w-3.5 text-violet-400" />
+                  <MapPin className="h-3.5 w-3.5 text-cyan-400" />
                   <span>Delhi, India</span>
                 </div>
               </div>
@@ -118,7 +118,7 @@ export default function About() {
                 variants={item}
                 className="glass-dark rounded-xl p-4 text-center gradient-border group hover:glow-violet-sm transition-all duration-300"
               >
-                <Icon className="h-5 w-5 text-violet-400 mx-auto mb-2" />
+                <Icon className="h-5 w-5 text-cyan-400 mx-auto mb-2" />
                 <div className="text-2xl font-bold gradient-text">{value}</div>
                 <div className="text-xs text-foreground/50 mt-0.5">{label}</div>
               </motion.div>
@@ -141,7 +141,7 @@ export default function About() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="flex-1 flex items-center justify-center h-10 rounded-xl bg-white/5 border border-white/10 text-foreground/50 hover:text-violet-400 hover:border-violet-500/30 transition-all duration-200"
+                  className="flex-1 flex items-center justify-center h-10 rounded-xl bg-white/5 border border-white/10 text-foreground/50 hover:text-cyan-400 hover:border-cyan-500/30 transition-all duration-200"
                 >
                   <Icon className="h-4 w-4" />
                 </a>
@@ -155,13 +155,13 @@ export default function About() {
           {/* Bio Card */}
           <div className="glass-dark rounded-2xl p-7 gradient-border">
             <div className="flex items-center gap-2 mb-5">
-              <BookOpen className="h-5 w-5 text-violet-400" />
+              <BookOpen className="h-5 w-5 text-cyan-400" />
               <h2 className="text-xl font-bold">My Story</h2>
             </div>
             <div className="space-y-4 text-foreground/65 leading-relaxed">
               <p>
                 I'm <span className="text-foreground font-semibold">Shashwat Vaish</span>, a full-stack developer and Computer Science undergraduate at{" "}
-                <span className="text-violet-400 font-medium">GGS Indraprastha University</span>.who enjoys building products that combine clean design with solid engineering. What started as curiosity during school gradually turned into a strong passion for creating scalable, real-world applications.
+                <span className="text-cyan-400 font-medium">GGS Indraprastha University</span>.who enjoys building products that combine clean design with solid engineering. What started as curiosity during school gradually turned into a strong passion for creating scalable, real-world applications.
               </p>
               <p>
                 My work focuses on modern web development — crafting responsive frontends, designing backend systems, and building efficient APIs and databases. I’ve developed projects across AI, analytics, real-time platforms, and developer tools, always aiming to create products that are both practical and impactful.
@@ -175,7 +175,7 @@ export default function About() {
           {/* Education */}
           <div className="glass-dark rounded-2xl p-7 gradient-border">
             <div className="flex items-center gap-2 mb-5">
-              <GraduationCap className="h-5 w-5 text-violet-400" />
+              <GraduationCap className="h-5 w-5 text-cyan-400" />
               <h2 className="text-xl font-bold">Education</h2>
             </div>
             <div className="space-y-4">
@@ -185,8 +185,8 @@ export default function About() {
                   school: "Indraprastha University",
                   period: "2023 – 2027",
                   status: "Current",
-                  color: "text-violet-400",
-                  dot: "bg-violet-500",
+                  color: "text-cyan-400",
+                  dot: "bg-cyan-500",
                 },
                 {
                   degree: "Senior Secondary (Class XII)",
@@ -205,7 +205,7 @@ export default function About() {
                   <div className="pb-4">
                     <div className="flex items-center gap-2 flex-wrap mb-1">
                       <h3 className="font-semibold text-foreground/90">{edu.degree}</h3>
-                      <span className={`text-xs px-2 py-0.5 rounded-full ${edu.status === 'Current' ? 'bg-violet-500/15 text-violet-300' : 'bg-blue-500/15 text-blue-300'}`}>
+                      <span className={`text-xs px-2 py-0.5 rounded-full ${edu.status === 'Current' ? 'bg-cyan-500/15 text-cyan-300' : 'bg-blue-500/15 text-blue-300'}`}>
                         {edu.status}
                       </span>
                     </div>
@@ -220,7 +220,7 @@ export default function About() {
           {/* Skills */}
           <div className="glass-dark rounded-2xl p-7 gradient-border">
             <div className="flex items-center gap-2 mb-5">
-              <Cpu className="h-5 w-5 text-violet-400" />
+              <Cpu className="h-5 w-5 text-cyan-400" />
               <h2 className="text-xl font-bold">Tech I Work With</h2>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -238,14 +238,14 @@ export default function About() {
           {/* Interests */}
           <div className="glass-dark rounded-2xl p-7 gradient-border">
             <div className="flex items-center gap-2 mb-5">
-              <Lightbulb className="h-5 w-5 text-violet-400" />
+              <Lightbulb className="h-5 w-5 text-cyan-400" />
               <h2 className="text-xl font-bold">Interests</h2>
             </div>
             <div className="flex flex-wrap gap-2">
               {interests.map((interest) => (
                 <span
                   key={interest}
-                  className="px-4 py-2 rounded-xl text-sm font-medium bg-white/5 text-foreground/60 border border-white/10 hover:border-violet-500/30 hover:text-foreground/80 transition-all duration-200 cursor-default"
+                  className="px-4 py-2 rounded-xl text-sm font-medium bg-white/5 text-foreground/60 border border-white/10 hover:border-cyan-500/30 hover:text-foreground/80 transition-all duration-200 cursor-default"
                 >
                   {interest}
                 </span>

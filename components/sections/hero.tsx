@@ -39,8 +39,8 @@ export function HeroSection() {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/80" />
 
       {/* Decorative orbs */}
-      <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-violet-600/10 blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/3 right-1/4 w-48 h-48 rounded-full bg-indigo-600/10 blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-cyan-600/10 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/3 right-1/4 w-48 h-48 rounded-full bg-sky-600/10 blur-3xl pointer-events-none" />
 
       <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full">
         {/* Left — Text Content */}
@@ -56,10 +56,10 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.5 }}
           >
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium bg-violet-500/10 text-violet-300 border border-violet-500/20">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-violet-500" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500" />
               </span>
               Available for opportunities
             </span>
@@ -95,7 +95,7 @@ export function HeroSection() {
             className="text-xl text-foreground/60 flex items-center gap-2"
           >
             <span>I'm a</span>
-            <span className="text-violet-400 font-semibold">
+            <span className="text-cyan-400 font-semibold">
               <TypeAnimation
                 sequence={[
                   'Full-Stack Developer',
@@ -134,13 +134,13 @@ export function HeroSection() {
             className="flex flex-wrap gap-3"
           >
             <Link href="#projects">
-              <button className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm bg-gradient-to-r from-violet-600 to-indigo-600 text-white hover:from-violet-500 hover:to-indigo-500 transition-all duration-200 shadow-lg shadow-violet-900/40 glow-violet-sm">
+              <button className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm bg-gradient-to-r from-cyan-500 to-sky-500 text-white hover:from-cyan-400 hover:to-sky-400 transition-all duration-200 shadow-lg shadow-cyan-900/40 glow-violet-sm">
                 View Projects
                 <ArrowRight className="h-4 w-4" />
               </button>
             </Link>
             <Link href="Shash-May-CV.pdf" target="_blank">
-              <button className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm glass border border-white/10 text-foreground/80 hover:text-foreground hover:border-violet-500/30 transition-all duration-200">
+              <button className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm glass border border-white/10 text-foreground/80 hover:text-foreground hover:border-cyan-500/30 transition-all duration-200">
                 <Download className="h-4 w-4" />
                 Download CV
               </button>
@@ -183,7 +183,7 @@ export function HeroSection() {
           className="relative flex items-center justify-center"
         >
           {/* Glowing ring behind animation */}
-          <div className="absolute w-72 h-72 rounded-full bg-gradient-to-br from-violet-600/20 to-indigo-600/20 blur-2xl animate-pulse-glow" />
+          <div className="absolute w-72 h-72 rounded-full bg-gradient-to-br from-cyan-600/20 to-sky-600/20 blur-2xl animate-pulse-glow" />
           <div className="relative w-full max-w-md aspect-square animate-float">
             <Lottie animationData={devAnimation} loop={true} className="h-full w-full" />
           </div>

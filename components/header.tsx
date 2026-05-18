@@ -52,7 +52,7 @@ export function Header() {
         className="fixed top-0 left-0 right-0 z-[60] h-[2px] origin-left"
         style={{
           scaleX,
-          background: "linear-gradient(90deg, #7c3aed, #a855f7, #6366f1)",
+          background: "linear-gradient(90deg, #06b6d4, #22d3ee, #0ea5e9)",
         }}
       />
 
@@ -86,7 +86,7 @@ export function Header() {
                     onClick={() => setIsOpen(false)}
                     className={`flex items-center px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
                       activeSection === item.name.toLowerCase()
-                        ? "bg-violet-500/10 text-violet-400 border border-violet-500/20"
+                        ? "bg-cyan-500/10 text-cyan-400 border border-cyan-500/20"
                         : "text-foreground/70 hover:text-foreground hover:bg-white/5"
                     }`}
                   >
@@ -99,7 +99,7 @@ export function Header() {
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: navItems.length * 0.07 }}
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center justify-center gap-2 w-full px-4 py-3 mt-2 rounded-xl text-sm font-medium bg-gradient-to-r from-violet-600 to-indigo-600 text-white"
+                  className="flex items-center justify-center gap-2 w-full px-4 py-3 mt-2 rounded-xl text-sm font-medium bg-gradient-to-r from-cyan-500 to-sky-500 text-white"
                 >
                   Hire Me
                 </motion.a>

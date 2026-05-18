@@ -157,7 +157,7 @@ export default function ProjectsShowcase(): ReactElement {
         <p className="text-foreground/50 max-w-xl mx-auto text-sm leading-relaxed">
           A collection of real-world projects — from AI tools to developer platforms, each solving a genuine problem.
         </p>
-        <div className="h-px w-24 mx-auto mt-4 bg-gradient-to-r from-transparent via-violet-500 to-transparent" />
+        <div className="h-px w-24 mx-auto mt-4 bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
       </motion.div>
 
       {/* Filter Pills */}
@@ -173,8 +173,8 @@ export default function ProjectsShowcase(): ReactElement {
             onClick={() => setActiveFilter(key)}
             className={`flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
               activeFilter === key
-                ? 'bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-lg shadow-violet-900/30'
-                : 'glass border border-white/10 text-foreground/50 hover:text-foreground hover:border-violet-500/30'
+                ? 'bg-gradient-to-r from-cyan-500 to-sky-500 text-white shadow-lg shadow-cyan-900/30'
+                : 'glass border border-white/10 text-foreground/50 hover:text-foreground hover:border-cyan-500/30'
             }`}
           >
             {key === 'all' && <Filter className="h-3.5 w-3.5" />}
@@ -210,11 +210,11 @@ function ProjectCard({ project, index }: { project: Project; index: number }): R
       transition={{ duration: 0.4, delay: index * 0.06 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="group relative rounded-2xl overflow-hidden glass-dark border border-white/8 hover:border-violet-500/25 transition-all duration-400 hover:glow-violet-sm flex flex-col"
+      className="group relative rounded-2xl overflow-hidden glass-dark border border-white/8 hover:border-cyan-500/25 transition-all duration-400 hover:glow-violet-sm flex flex-col"
     >
       {/* Featured Badge */}
       {project.featured && (
-        <div className="absolute top-3 left-3 z-20 flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-lg">
+        <div className="absolute top-3 left-3 z-20 flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-gradient-to-r from-cyan-500 to-sky-500 text-white shadow-lg">
           <Sparkles className="h-2.5 w-2.5" />
           Featured
         </div>
@@ -241,7 +241,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }): R
             <motion.span
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-lg cursor-pointer"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold bg-gradient-to-r from-cyan-500 to-sky-500 text-white shadow-lg cursor-pointer"
             >
               <ExternalLink className="h-3.5 w-3.5" />
               Live Demo
@@ -263,9 +263,9 @@ function ProjectCard({ project, index }: { project: Project; index: number }): R
       {/* Card Content */}
       <div className="p-5 flex flex-col flex-1">
         {/* Gradient top accent line */}
-        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-violet-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-        <h3 className="text-base font-bold text-foreground/90 group-hover:text-violet-300 transition-colors duration-300 mb-2 leading-snug">
+        <h3 className="text-base font-bold text-foreground/90 group-hover:text-cyan-300 transition-colors duration-300 mb-2 leading-snug">
           {project.title}
         </h3>
         <p className="text-foreground/50 text-xs leading-relaxed mb-4 line-clamp-2 flex-1">

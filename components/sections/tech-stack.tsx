@@ -52,7 +52,7 @@ export function TechStack() {
         <p className="text-foreground/50 max-w-lg mx-auto text-sm">
           Technologies I use daily to bring ideas to life — from frontend to backend to databases.
         </p>
-        <div className="h-px w-24 mx-auto mt-4 bg-gradient-to-r from-transparent via-violet-500 to-transparent" />
+        <div className="h-px w-24 mx-auto mt-4 bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
       </motion.div>
 
       {/* Dual Marquee */}
@@ -86,7 +86,7 @@ export function TechStack() {
 
 function IconCard({ icon }: { icon: { src: string; alt: string } }) {
   return (
-    <div className="group flex flex-col items-center justify-center gap-2 w-20 h-20 rounded-2xl glass-dark border border-white/8 hover:border-violet-500/30 hover:glow-violet-sm transition-all duration-300 mx-2 cursor-default">
+    <div className="group flex flex-col items-center justify-center gap-2 w-20 h-20 rounded-2xl glass-dark border border-white/8 hover:border-cyan-500/30 hover:glow-violet-sm transition-all duration-300 mx-2 cursor-default">
       <img
         src={icon.src}
         alt={icon.alt}

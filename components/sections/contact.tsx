@@ -28,7 +28,7 @@ export default function Contact() {
   };
 
   const infoItems = [
-    { icon: Mail, label: "Email", value: "shashwatvaish1@gmail.com", href: "mailto:shashwatvaish1@gmail.com", colorClass: "text-violet-400 bg-violet-500/15" },
+    { icon: Mail, label: "Email", value: "shashwatvaish1@gmail.com", href: "mailto:shashwatvaish1@gmail.com", colorClass: "text-cyan-400 bg-cyan-500/15" },
     { icon: MapPin, label: "Location", value: "Delhi, India", href: null, colorClass: "text-emerald-400 bg-emerald-500/15" },
   ];
 
@@ -38,7 +38,7 @@ export default function Contact() {
     { href: "https://www.instagram.com/shash.ded", icon: Instagram, label: "Instagram" },
   ];
 
-  const inputCls = "w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-foreground placeholder-foreground/30 focus:outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/30 transition-all duration-200 text-sm";
+  const inputCls = "w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-foreground placeholder-foreground/30 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/30 transition-all duration-200 text-sm";
 
   return (
     <section ref={ref} className="py-8">
@@ -51,7 +51,7 @@ export default function Contact() {
         <p className="text-foreground/50 max-w-lg mx-auto text-sm leading-relaxed">
           Have a project in mind, an opportunity, or just want to say hi? My inbox is always open.
         </p>
-        <div className="h-px w-24 mx-auto mt-4 bg-gradient-to-r from-transparent via-violet-500 to-transparent" />
+        <div className="h-px w-24 mx-auto mt-4 bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
       </motion.div>
 
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 max-w-5xl mx-auto">
@@ -59,7 +59,7 @@ export default function Contact() {
         <motion.div initial={{ opacity: 0, x: -20 }} animate={isInView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.6, delay: 0.1 }} className="lg:col-span-3">
           <div className="glass-dark rounded-2xl p-7 gradient-border h-full">
             <h3 className="text-lg font-bold mb-6 flex items-center gap-2">
-              <Send className="h-4 w-4 text-violet-400" />
+              <Send className="h-4 w-4 text-cyan-400" />
               Send Me a Message
             </h3>
             <form onSubmit={handleSubmit} className="space-y-5">
@@ -77,7 +77,7 @@ export default function Contact() {
               </div>
 
               <motion.button type="submit" disabled={isLoading || formStatus === 'success'} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.98 }}
-                className="w-full py-3 px-6 rounded-xl font-semibold text-sm text-white bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center gap-2 shadow-lg shadow-violet-900/30 shimmer">
+                className="w-full py-3 px-6 rounded-xl font-semibold text-sm text-white bg-gradient-to-r from-cyan-500 to-sky-500 hover:from-cyan-400 hover:to-sky-400 disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center gap-2 shadow-lg shadow-cyan-900/30 shimmer">
                 {isLoading ? (
                   <><svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" /></svg>Sending...</>
                 ) : formStatus === 'success' ? (
@@ -102,14 +102,14 @@ export default function Contact() {
           <div className="glass-dark rounded-2xl p-6 gradient-border space-y-4">
             <h3 className="text-xs font-semibold text-foreground/50 uppercase tracking-wider">Contact Info</h3>
             {infoItems.map(({ icon: Icon, label, value, href, colorClass }) => (
-              <div key={label} className="flex items-center gap-4 p-4 rounded-xl bg-white/3 border border-white/8 hover:border-violet-500/20 transition-all duration-200">
+              <div key={label} className="flex items-center gap-4 p-4 rounded-xl bg-white/3 border border-white/8 hover:border-cyan-500/20 transition-all duration-200">
                 <div className={`h-10 w-10 rounded-xl flex items-center justify-center flex-shrink-0 ${colorClass}`}>
                   <Icon className="h-4 w-4" />
                 </div>
                 <div className="min-w-0">
                   <p className="text-xs text-foreground/40 mb-0.5">{label}</p>
                   {href ? (
-                    <a href={href} className="text-sm font-medium text-foreground/80 hover:text-violet-300 transition-colors truncate block">{value}</a>
+                    <a href={href} className="text-sm font-medium text-foreground/80 hover:text-cyan-300 transition-colors truncate block">{value}</a>
                   ) : (
                     <p className="text-sm font-medium text-foreground/80 truncate">{value}</p>
                   )}
@@ -123,7 +123,7 @@ export default function Contact() {
             <div className="space-y-3">
               {socialLinks.map(({ href, icon: Icon, label }) => (
                 <motion.a key={label} href={href} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-3.5 rounded-xl glass border border-white/8 text-foreground/50 hover:text-foreground/90 hover:border-violet-500/30 transition-all duration-200"
+                  className="flex items-center gap-3 p-3.5 rounded-xl glass border border-white/8 text-foreground/50 hover:text-foreground/90 hover:border-cyan-500/30 transition-all duration-200"
                   whileHover={{ x: 4 }}>
                   <Icon className="h-4 w-4 flex-shrink-0" />
                   <span className="text-sm font-medium">{label}</span>
@@ -133,9 +133,9 @@ export default function Contact() {
             </div>
           </div>
 
-          <div className="p-5 rounded-2xl border border-violet-500/20 bg-violet-500/5">
+          <div className="p-5 rounded-2xl border border-cyan-500/20 bg-cyan-500/5">
             <p className="text-xs text-foreground/50 leading-relaxed">
-              I typically respond within <span className="text-violet-300 font-medium">24 hours</span>. Whether it's a collaboration, internship, or just a chat — I'm all ears!
+              I typically respond within <span className="text-cyan-300 font-medium">24 hours</span>. Whether it's a collaboration, internship, or just a chat — I'm all ears!
             </p>
           </div>
         </motion.div>

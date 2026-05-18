@@ -8,48 +8,48 @@ html {
 
 @layer base {
   :root {
-    --background: 240 10% 4%;
+    --background: 222 47% 4%;
     --foreground: 210 40% 98%;
-    --card: 240 10% 6%;
+    --card: 222 47% 6%;
     --card-foreground: 210 40% 98%;
-    --popover: 240 10% 6%;
+    --popover: 222 47% 6%;
     --popover-foreground: 210 40% 98%;
-    --primary: 263 70% 60%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 240 6% 12%;
+    --primary: 192 91% 46%;
+    --primary-foreground: 222 47% 6%;
+    --secondary: 222 30% 12%;
     --secondary-foreground: 210 40% 98%;
-    --muted: 240 6% 12%;
+    --muted: 222 30% 12%;
     --muted-foreground: 215 20% 55%;
-    --accent: 263 70% 60%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 192 91% 46%;
+    --accent-foreground: 222 47% 6%;
     --destructive: 0 72% 51%;
     --destructive-foreground: 210 40% 98%;
-    --border: 240 6% 14%;
-    --input: 240 6% 12%;
-    --ring: 263 70% 60%;
+    --border: 222 30% 14%;
+    --input: 222 30% 12%;
+    --ring: 192 91% 46%;
     --radius: 0.75rem;
   }
 
   .dark {
-    --background: 240 10% 4%;
+    --background: 222 47% 4%;
     --foreground: 210 40% 98%;
-    --card: 240 10% 6%;
+    --card: 222 47% 6%;
     --card-foreground: 210 40% 98%;
-    --popover: 240 10% 6%;
+    --popover: 222 47% 6%;
     --popover-foreground: 210 40% 98%;
-    --primary: 263 70% 60%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 240 6% 12%;
+    --primary: 192 91% 46%;
+    --primary-foreground: 222 47% 6%;
+    --secondary: 222 30% 12%;
     --secondary-foreground: 210 40% 98%;
-    --muted: 240 6% 12%;
+    --muted: 222 30% 12%;
     --muted-foreground: 215 20% 55%;
-    --accent: 263 70% 60%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 192 91% 46%;
+    --accent-foreground: 222 47% 6%;
     --destructive: 0 72% 51%;
     --destructive-foreground: 210 40% 98%;
-    --border: 240 6% 14%;
-    --input: 240 6% 12%;
-    --ring: 263 70% 60%;
+    --border: 222 30% 14%;
+    --input: 222 30% 12%;
+    --ring: 192 91% 46%;
   }
 }
 
@@ -71,33 +71,33 @@ html {
   }
 
   .glass-dark {
-    background: rgba(15, 15, 35, 0.7);
+    background: rgba(5, 15, 30, 0.7);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-purple-400 to-indigo-400;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-teal-400 to-sky-400;
   }
 
   .gradient-text-alt {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-violet-400 to-purple-500;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-sky-400 via-cyan-400 to-teal-500;
   }
 
   .glow-violet {
-    box-shadow: 0 0 30px rgba(124, 58, 237, 0.3), 0 0 60px rgba(124, 58, 237, 0.1);
+    box-shadow: 0 0 30px rgba(6, 182, 212, 0.3), 0 0 60px rgba(6, 182, 212, 0.1);
   }
 
   .glow-violet-sm {
-    box-shadow: 0 0 15px rgba(124, 58, 237, 0.25);
+    box-shadow: 0 0 15px rgba(6, 182, 212, 0.25);
   }
 
   .mesh-bg {
     background-image:
-      radial-gradient(ellipse 80% 80% at 50% -20%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
-      radial-gradient(ellipse 60% 60% at 80% 50%, rgba(37, 99, 235, 0.08) 0%, transparent 50%),
-      radial-gradient(ellipse 60% 60% at 20% 80%, rgba(168, 85, 247, 0.08) 0%, transparent 50%);
+      radial-gradient(ellipse 80% 80% at 50% -20%, rgba(6, 182, 212, 0.12) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 60% at 80% 50%, rgba(14, 165, 233, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 60% at 20% 80%, rgba(20, 184, 166, 0.08) 0%, transparent 50%);
   }
 
   .dot-grid {
@@ -114,7 +114,7 @@ html {
     position: absolute;
     inset: 0;
     padding: 1px;
-    background: linear-gradient(135deg, rgba(124, 58, 237, 0.5), rgba(37, 99, 235, 0.3), transparent);
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.5), rgba(14, 165, 233, 0.3), transparent);
     border-radius: inherit;
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
@@ -147,8 +147,8 @@ html {
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(124, 58, 237, 0.3); }
-  50% { box-shadow: 0 0 40px rgba(124, 58, 237, 0.6), 0 0 80px rgba(124, 58, 237, 0.2); }
+  0%, 100% { box-shadow: 0 0 20px rgba(6, 182, 212, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(6, 182, 212, 0.6), 0 0 80px rgba(6, 182, 212, 0.2); }
 }
 
 @keyframes gradient-shift {
@@ -176,14 +176,14 @@ html {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #080812;
+  background: #020c18;
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #7c3aed, #4f46e5);
+  background: linear-gradient(to bottom, #06b6d4, #0ea5e9);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #8b5cf6, #6366f1);
+  background: linear-gradient(to bottom, #22d3ee, #38bdf8);
 }
 
 /* ─── Selection ────────────────────────────────────────────── */
