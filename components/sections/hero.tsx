@@ -139,7 +139,7 @@ export function HeroSection() {
                 <ArrowRight className="h-4 w-4" />
               </button>
             </Link>
-            <Link href="Shash-May-CV.pdf" target="_blank">
+            <Link href="Shash-July-CV.pdf" target="_blank">
               <button className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm glass border border-white/10 text-foreground/80 hover:text-foreground hover:border-cyan-500/30 transition-all duration-200">
                 <Download className="h-4 w-4" />
                 Download CV
