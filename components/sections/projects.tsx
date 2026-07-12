@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { ExternalLink, Github, Sparkles, Filter } from 'lucide-react';
 import type { ReactElement } from 'react';
 
@@ -120,13 +120,6 @@ const categories = [
   { key: 'fullstack', label: 'Full-Stack' },
 ];
 
-const tagColors: Record<string, string> = {
-  "Next.js": "bg-white/10 text-white/70",
-  "React": "bg-blue-500/15 text-blue-300",
-  "MongoDB": "bg-emerald-500/15 text-emerald-300",
-  "TypeScript": "bg-blue-400/15 text-blue-300",
-};
-
 export default function ProjectsShowcase(): ReactElement {
   const [activeFilter, setActiveFilter] = useState<string>('all');
   const [filteredProjects, setFilteredProjects] = useState<Project[]>(projects);
@@ -149,15 +142,12 @@ export default function ProjectsShowcase(): ReactElement {
         transition={{ duration: 0.6 }}
         className="text-center mb-12"
       >
-        {/* <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-violet-500/10 text-violet-300 border border-violet-500/20 mb-4">
-          <Sparkles className="h-3 w-3" />
-          What I've built
-        </span> */}
+        <div className="eyebrow mb-4">what i&apos;ve built</div>
         <h2 className="text-4xl lg:text-5xl font-bold gradient-text mb-4">My Projects</h2>
         <p className="text-foreground/50 max-w-xl mx-auto text-sm leading-relaxed">
           A collection of real-world projects — from AI tools to developer platforms, each solving a genuine problem.
         </p>
-        <div className="h-px w-24 mx-auto mt-4 bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
+        <div className="h-px w-24 mx-auto mt-4 bg-gradient-to-r from-transparent via-amber-400 to-transparent" />
       </motion.div>
 
       {/* Filter Pills */}
@@ -171,10 +161,10 @@ export default function ProjectsShowcase(): ReactElement {
           <button
             key={key}
             onClick={() => setActiveFilter(key)}
-            className={`flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
+            className={`flex items-center gap-2 px-5 py-2 font-mono text-xs uppercase tracking-wider transition-all duration-300 ${
               activeFilter === key
-                ? 'bg-gradient-to-r from-cyan-500 to-sky-500 text-white shadow-lg shadow-cyan-900/30'
-                : 'glass border border-white/10 text-foreground/50 hover:text-foreground hover:border-cyan-500/30'
+                ? 'bg-amber-400 text-[#1a1408]'
+                : 'glass border border-white/10 text-foreground/50 hover:text-foreground hover:border-amber-400/30'
             }`}
           >
             {key === 'all' && <Filter className="h-3.5 w-3.5" />}
@@ -184,37 +174,27 @@ export default function ProjectsShowcase(): ReactElement {
       </motion.div>
 
       {/* Projects Grid */}
-      <motion.div
-        layout
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-      >
-        <AnimatePresence mode="popLayout">
-          {filteredProjects.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} />
-          ))}
-        </AnimatePresence>
-      </motion.div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {filteredProjects.map((project) => (
+          <ProjectCard key={project.id} project={project} />
+        ))}
+      </div>
     </section>
   );
 }
 
-function ProjectCard({ project, index }: { project: Project; index: number }): ReactElement {
+function ProjectCard({ project }: { project: Project }): ReactElement {
   const [hovered, setHovered] = useState(false);
 
   return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      transition={{ duration: 0.4, delay: index * 0.06 }}
+    <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="group relative rounded-2xl overflow-hidden glass-dark border border-white/8 hover:border-cyan-500/25 transition-all duration-400 hover:glow-violet-sm flex flex-col"
+      className="plate-ticks group relative overflow-hidden glass-dark border border-white/8 hover:border-amber-400/25 transition-all duration-400 hover:glow-violet-sm flex flex-col"
     >
       {/* Featured Badge */}
       {project.featured && (
-        <div className="absolute top-3 left-3 z-20 flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-gradient-to-r from-cyan-500 to-sky-500 text-white shadow-lg">
+        <div className="absolute top-3 left-3 z-20 flex items-center gap-1 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider font-semibold bg-amber-400 text-[#1a1408]">
           <Sparkles className="h-2.5 w-2.5" />
           Featured
         </div>
@@ -228,7 +208,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }): R
           className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
         />
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0f0f23] via-[#0f0f23]/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0d0c0a] via-[#0d0c0a]/40 to-transparent" />
 
         {/* Hover action overlay */}
         <motion.div
@@ -241,7 +221,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }): R
             <motion.span
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold bg-gradient-to-r from-cyan-500 to-sky-500 text-white shadow-lg cursor-pointer"
+              className="inline-flex items-center gap-2 px-4 py-2 font-mono text-xs uppercase tracking-wider font-semibold bg-amber-400 text-[#1a1408] cursor-pointer"
             >
               <ExternalLink className="h-3.5 w-3.5" />
               Live Demo
@@ -251,7 +231,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }): R
             <motion.span
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold glass border border-white/20 text-white cursor-pointer"
+              className="inline-flex items-center gap-2 px-4 py-2 font-mono text-xs uppercase tracking-wider font-semibold glass border border-white/20 text-white cursor-pointer"
             >
               <Github className="h-3.5 w-3.5" />
               Code
@@ -263,9 +243,9 @@ function ProjectCard({ project, index }: { project: Project; index: number }): R
       {/* Card Content */}
       <div className="p-5 flex flex-col flex-1">
         {/* Gradient top accent line */}
-        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-amber-400/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-        <h3 className="text-base font-bold text-foreground/90 group-hover:text-cyan-300 transition-colors duration-300 mb-2 leading-snug">
+        <h3 className="text-base font-bold text-foreground/90 group-hover:text-amber-300 transition-colors duration-300 mb-2 leading-snug">
           {project.title}
         </h3>
         <p className="text-foreground/50 text-xs leading-relaxed mb-4 line-clamp-2 flex-1">
@@ -275,17 +255,12 @@ function ProjectCard({ project, index }: { project: Project; index: number }): R
         {/* Tags */}
         <div className="flex flex-wrap gap-1.5 mt-auto">
           {project.tags.map((tag) => (
-            <span
-              key={tag}
-              className={`px-2.5 py-1 rounded-lg text-[10px] font-medium border border-white/10 ${
-                tagColors[tag] ?? "bg-white/5 text-foreground/50"
-              }`}
-            >
+            <span key={tag} className="tag-mono">
               {tag}
             </span>
           ))}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

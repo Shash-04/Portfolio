@@ -2,7 +2,6 @@
 
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Wrench } from 'lucide-react';
 import { Marquee } from "../magicui/marquee";
 
 const techIcons = [
@@ -44,15 +43,12 @@ export function TechStack() {
         transition={{ duration: 0.6 }}
         className="text-center mb-12"
       >
-        {/* <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-violet-500/10 text-violet-300 border border-violet-500/20 mb-4">
-          <Wrench className="h-3 w-3" />
-          My Toolkit
-        </span> */}
+        <div className="eyebrow mb-4">my toolkit</div>
         <h2 className="text-4xl lg:text-5xl font-bold gradient-text mb-4">Tech Stack</h2>
         <p className="text-foreground/50 max-w-lg mx-auto text-sm">
           Technologies I use daily to bring ideas to life — from frontend to backend to databases.
         </p>
-        <div className="h-px w-24 mx-auto mt-4 bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
+        <div className="h-px w-24 mx-auto mt-4 bg-gradient-to-r from-transparent via-amber-400 to-transparent" />
       </motion.div>
 
       {/* Dual Marquee */}
@@ -86,7 +82,7 @@ export function TechStack() {
 
 function IconCard({ icon }: { icon: { src: string; alt: string } }) {
   return (
-    <div className="group flex flex-col items-center justify-center gap-2 w-20 h-20 rounded-2xl glass-dark border border-white/8 hover:border-cyan-500/30 hover:glow-violet-sm transition-all duration-300 mx-2 cursor-default">
+    <div className="group flex flex-col items-center justify-center gap-2 w-20 h-20 glass-dark border border-white/8 hover:border-amber-400/30 hover:glow-violet-sm transition-all duration-300 mx-2 cursor-default">
       <img
         src={icon.src}
         alt={icon.alt}

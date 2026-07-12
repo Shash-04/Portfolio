@@ -51,35 +51,35 @@ export function Header() {
         className="fixed top-0 left-0 right-0 z-[60] h-[2px] origin-left"
         style={{
           scaleX,
-          background: "linear-gradient(90deg, #06b6d4, #22d3ee, #0ea5e9)",
+          background: "linear-gradient(90deg, #E8A33D, #E8622C)",
         }}
       />
 
       <header
         className={`sticky top-0 z-50 w-full transition-all duration-500 ${
-          scrolled ? "glass-dark shadow-lg shadow-black/20" : "bg-transparent"
+          scrolled ? "glass-dark shadow-lg shadow-black/30" : "bg-transparent"
         }`}
       >
         <div className="container mx-auto px-4 md:px-6">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <a
               href="#hero"
-              className="text-lg font-bold tracking-tight text-foreground/90 hover:text-cyan-300 transition-colors duration-200"
+              className="font-mono text-lg text-foreground/60 hover:text-amber-400 transition-colors duration-200"
             >
-              Shashwat<span className="gradient-text">.</span>
+              ~/<span className="text-foreground/90 font-semibold">shashwat</span><span className="text-amber-400">_</span>
             </a>
 
             {/* Desktop Nav */}
-            <nav className="hidden md:flex items-center gap-1">
+            <nav className="hidden md:flex items-center gap-1 font-mono">
               {navItems.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
-                  className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
+                  className={`px-4 py-2 text-sm uppercase tracking-wider transition-all duration-200 border-b ${
                     activeSection === item.name.toLowerCase()
-                      ? "bg-cyan-500/10 text-cyan-400 border border-cyan-500/20"
-                      : "text-foreground/70 hover:text-foreground hover:bg-white/5 border border-transparent"
+                      ? "text-amber-400 border-amber-400/60"
+                      : "text-foreground/60 hover:text-foreground border-transparent hover:border-white/15"
                   }`}
                 >
                   {item.name}
@@ -87,7 +87,7 @@ export function Header() {
               ))}
               <a
                 href="#contact"
-                className="ml-2 inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium bg-gradient-to-r from-cyan-500 to-sky-500 text-white hover:from-cyan-400 hover:to-sky-400 transition-all duration-200"
+                className="ml-2 inline-flex items-center gap-2 px-4 py-2 text-sm uppercase tracking-wider font-semibold bg-amber-400 text-[#1a1408] hover:bg-amber-300 transition-all duration-200"
               >
                 Hire Me
               </a>
@@ -99,7 +99,7 @@ export function Header() {
               onClick={() => setIsOpen((prev) => !prev)}
               aria-label={isOpen ? "Close menu" : "Open menu"}
               aria-expanded={isOpen}
-              className="md:hidden flex items-center justify-center h-10 w-10 rounded-xl text-foreground/70 hover:text-foreground hover:bg-white/5 transition-all duration-200"
+              className="md:hidden flex items-center justify-center h-10 w-10 text-foreground/70 hover:text-foreground hover:bg-white/5 transition-all duration-200"
             >
               {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -114,7 +114,7 @@ export function Header() {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.25, ease: "easeInOut" }}
-              className="md:hidden overflow-hidden glass-dark border-t border-white/5"
+              className="md:hidden overflow-hidden glass-dark border-t border-white/5 font-mono"
             >
               <div className="px-4 py-4 space-y-1">
                 {navItems.map((item, i) => (
@@ -125,10 +125,10 @@ export function Header() {
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: i * 0.07 }}
                     onClick={() => setIsOpen(false)}
-                    className={`flex items-center px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
+                    className={`flex items-center px-4 py-3 text-sm uppercase tracking-wider transition-all duration-200 border-l-2 ${
                       activeSection === item.name.toLowerCase()
-                        ? "bg-cyan-500/10 text-cyan-400 border border-cyan-500/20"
-                        : "text-foreground/70 hover:text-foreground hover:bg-white/5"
+                        ? "text-amber-400 border-amber-400/60 bg-amber-400/5"
+                        : "text-foreground/60 hover:text-foreground border-transparent hover:bg-white/5"
                     }`}
                   >
                     {item.name}
@@ -140,7 +140,7 @@ export function Header() {
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: navItems.length * 0.07 }}
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center justify-center gap-2 w-full px-4 py-3 mt-2 rounded-xl text-sm font-medium bg-gradient-to-r from-cyan-500 to-sky-500 text-white"
+                  className="flex items-center justify-center gap-2 w-full px-4 py-3 mt-2 text-sm uppercase tracking-wider font-semibold bg-amber-400 text-[#1a1408]"
                 >
                   Hire Me
                 </motion.a>

@@ -28,10 +28,10 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-background font-[family-name:var(--font-outfit)]">
       <Header />
-      <div className="container mx-auto px-4 md:px-6 space-y-24 pb-24">
-        <section id="hero">
-          <HeroSection />
-        </section>
+      <section id="hero">
+        <HeroSection />
+      </section>
+      <div className="container mx-auto px-4 md:px-6 space-y-24 pt-24 pb-24">
         <section id="tech-stack">
           <TechStack />
         </section>
@@ -47,12 +47,12 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="border-t border-white/5 py-8">
+      <footer className="border-t border-white/5 py-8 font-mono">
         <div className="container mx-auto px-4 md:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-foreground/30 text-mb">
-            © {new Date().getFullYear()} <span className="text-cyan-400 font-medium">Shashwat Vaish</span>
+          <p className="text-foreground/30 text-xs">
+            © {new Date().getFullYear()} <span className="text-amber-400 font-medium">Shashwat Vaish</span>
           </p>
-          <div className="flex items-center gap-1 text-mb text-foreground/20">
+          <div className="flex items-center gap-1.5 text-xs text-foreground/20">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
             <span>Available for work</span>
           </div>
