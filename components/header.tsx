@@ -1,13 +1,17 @@
 "use client";
 
-import { useState, useEffect, useRef } from 'react';
-import { useTheme } from 'next-themes';
-import { Moon, Sun, Menu, X } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
+
+const navItems = [
+  { name: "Projects", href: "#projects" },
+  { name: "About", href: "#about" },
+  { name: "Contact", href: "#contact" },
+];
 
 export function Header() {
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const [scrolled, setScrolled] = useState(false);
@@ -34,16 +38,11 @@ export function Header() {
     };
 
     window.addEventListener("scroll", handleScroll);
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, [mounted]);
 
   if (!mounted) return null;
-
-  const navItems = [
-    { name: "Projects", href: "#projects" },
-    { name: "About", href: "#about" },
-    { name: "Contact", href: "#contact" },
-  ];
 
   return (
     <>
@@ -58,12 +57,54 @@ export function Header() {
 
       <header
         className={`sticky top-0 z-50 w-full transition-all duration-500 ${
-          scrolled
-            ? "glass-dark shadow-lg shadow-black/20"
-            : "bg-transparent"
+          scrolled ? "glass-dark shadow-lg shadow-black/20" : "bg-transparent"
         }`}
       >
-      
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo */}
+            <a
+              href="#hero"
+              className="text-lg font-bold tracking-tight text-foreground/90 hover:text-cyan-300 transition-colors duration-200"
+            >
+              Shashwat<span className="gradient-text">.</span>
+            </a>
+
+            {/* Desktop Nav */}
+            <nav className="hidden md:flex items-center gap-1">
+              {navItems.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
+                    activeSection === item.name.toLowerCase()
+                      ? "bg-cyan-500/10 text-cyan-400 border border-cyan-500/20"
+                      : "text-foreground/70 hover:text-foreground hover:bg-white/5 border border-transparent"
+                  }`}
+                >
+                  {item.name}
+                </a>
+              ))}
+              <a
+                href="#contact"
+                className="ml-2 inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium bg-gradient-to-r from-cyan-500 to-sky-500 text-white hover:from-cyan-400 hover:to-sky-400 transition-all duration-200"
+              >
+                Hire Me
+              </a>
+            </nav>
+
+            {/* Mobile Toggle */}
+            <button
+              type="button"
+              onClick={() => setIsOpen((prev) => !prev)}
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isOpen}
+              className="md:hidden flex items-center justify-center h-10 w-10 rounded-xl text-foreground/70 hover:text-foreground hover:bg-white/5 transition-all duration-200"
+            >
+              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
+        </div>
 
         {/* Mobile Dropdown */}
         <AnimatePresence>

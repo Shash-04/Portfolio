@@ -16,10 +16,13 @@ const firaCode = Fira_Code({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://shash-portfolio.vercel.app'),
   title: 'Shashwat Vaish — Full-Stack Developer',
   description: 'Portfolio of Shashwat Vaish, a full-stack developer and BTech CSE student building modern web applications with Next.js, TypeScript, and AI.',
   keywords: ['Shashwat Vaish', 'developer', 'portfolio', 'software engineer', 'full-stack', 'Next.js', 'TypeScript', 'Delhi'],
   authors: [{ name: 'Shashwat Vaish' }],
+  robots: { index: true, follow: true },
+  alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
     locale: 'en_US',

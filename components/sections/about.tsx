@@ -161,7 +161,7 @@ export default function About() {
             <div className="space-y-4 text-foreground/65 leading-relaxed">
               <p>
                 I'm <span className="text-foreground font-semibold">Shashwat Vaish</span>, a full-stack developer and Computer Science undergraduate at{" "}
-                <span className="text-cyan-400 font-medium">GGS Indraprastha University</span>.who enjoys building products that combine clean design with solid engineering. What started as curiosity during school gradually turned into a strong passion for creating scalable, real-world applications.
+                <span className="text-cyan-400 font-medium">GGS Indraprastha University</span>, who enjoys building products that combine clean design with solid engineering. What started as curiosity during school gradually turned into a strong passion for creating scalable, real-world applications.
               </p>
               <p>
                 My work focuses on modern web development — crafting responsive frontends, designing backend systems, and building efficient APIs and databases. I’ve developed projects across AI, analytics, real-time platforms, and developer tools, always aiming to create products that are both practical and impactful.

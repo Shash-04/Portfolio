@@ -2,8 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
-import { Button } from '@/components/ui/button';
-import { Github, Linkedin, Instagram, Download, ArrowRight, Sparkles } from 'lucide-react';
+import { Github, Linkedin, Instagram, Download, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 

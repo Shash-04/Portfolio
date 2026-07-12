@@ -50,7 +50,7 @@ export default function Home() {
       <footer className="border-t border-white/5 py-8">
         <div className="container mx-auto px-4 md:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-foreground/30 text-mb">
-            © 2025 <span className="text-cyan-400 font-medium">Shashwat Vaish</span>
+            © {new Date().getFullYear()} <span className="text-cyan-400 font-medium">Shashwat Vaish</span>
           </p>
           <div className="flex items-center gap-1 text-mb text-foreground/20">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
